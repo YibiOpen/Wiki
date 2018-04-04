@@ -41,6 +41,16 @@ headerPrefix + num (uint64 big endian) + hash -> rlpEncode(header)
 ```
 key是由区块体前缀，区块号和区块hash构成。value是区块体的RLP编码。
 
+key中的前缀可以用来区分数据的类型，在core/database_util.go中定义了各种前缀：
+```
+headerPrefix        = []byte("h")   // headerPrefix + num (uint64 big endian) + hash -> header
+tdSuffix            = []byte("t")   // headerPrefix + num (uint64 big endian) + hash + tdSuffix -> td
+numSuffix           = []byte("n")   // headerPrefix + num (uint64 big endian) + numSuffix -> hash
+blockHashPrefix     = []byte("H")   // blockHashPrefix + hash -> num (uint64 big endian)
+bodyPrefix          = []byte("b")   // bodyPrefix + num (uint64 big endian) + hash -> block body
+```
+其中headerPrefix定义了区块头key的前缀为h，bodyPrefix定义了区块体key的前缀为b。
+
 ## StateDB模块
 
 在以太坊中，账户的呈现形式是一个stateObject，所有账户首StateDB管理。StateDB中有一个成员叫trie，存储stateObject，每个stateObject有20bytes的地址，可以将其作为key；每次在一个区块的交易开始执行前，trie由一个哈希值(hashNode)恢复出来。另外还有一个map结构，也是存放stateObject，每个stateObject的地址作为map的key。
