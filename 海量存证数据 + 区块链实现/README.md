@@ -2,20 +2,20 @@
 
 <!-- TOC -->
 
--[海量存证数据 + 区块链实现](#海量存证数据 + 区块链实现)
-	-[区块链存证目前存在的挑战](#区块链存证目前存在的挑战)
-	-[优化实现方案](#优化实现方案)
-	-[亦笔科技的存证数据存储实现](#亦笔科技的存证数据存储实现)
-	    -[为什么使用Phoenix+Hbase](#为什么使用Phoenix+Hbase)
-	    -[Hbase数据模型](#Hbase数据模型)
-	    -[Hbase分片基础的Region](#Hbase分片基础的Region)
-	    -[Hbase在业务实现上存在的不足](#Hbase在业务实现上存在的不足)
-	    -[Phoenix架构](#Phoenix架构)
-	    -[Phoenix性能对比](#Phoenix性能对比)
-	    -[Cassandra如何快速、可靠的存储小文件](#Cassandra如何快速、可靠的存储小文件)
-	    -[Cassandra数据的写入](#Cassandra数据的写入)
-	    -[Cassandra数据的读取](#Cassandra数据的读取)
-	    -[总结](#总结)
+- [海量存证数据 + 区块链实现](#海量存证数据 + 区块链实现)
+	- [区块链存证目前存在的挑战](#区块链存证目前存在的挑战)
+	- [优化实现方案](#优化实现方案)
+	- [亦笔科技的存证数据存储实现](#亦笔科技的存证数据存储实现)
+	    - [为什么使用Phoenix+Hbase](#为什么使用Phoenix+Hbase)
+	    - [Hbase数据模型](#Hbase数据模型)
+	    - [Hbase分片基础的Region](#Hbase分片基础的Region)
+	    - [Hbase在业务实现上存在的不足](#Hbase在业务实现上存在的不足)
+	    - [Phoenix架构](#Phoenix架构)
+	    - [Phoenix性能对比](#Phoenix性能对比)
+	    - [Cassandra如何快速、可靠的存储小文件](#Cassandra如何快速、可靠的存储小文件)
+	    - [Cassandra数据的写入](#Cassandra数据的写入)
+	    - [Cassandra数据的读取](#Cassandra数据的读取)
+	    - [总结](#总结)
 	    
 <!-- /TOC -->
 
@@ -51,8 +51,8 @@ Rowkey的概念和mysql中的主键是完全一样的，Hbase使用Rowkey来唯�
 
 Hbase只支持3中查询方式：
 1. 基于Rowkey的单行查询；
-2.	基于Rowkey的范围扫描
-3.	全表扫描
+2. 基于Rowkey的范围扫描
+3. 全表扫描
 
 ### Hbase分片基础的Region
 
