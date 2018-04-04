@@ -103,7 +103,10 @@ Cassandra 中的数据主要分为三种：
 
 CommitLog 的数据只有一种，那就是按照一定格式组成 byte 组数，写到 IO 缓冲区中定时的被刷到磁盘中持久化，在上一篇的配置文件详解中已经有说到 CommitLog 的持久化方式有两种，一个是 Periodic 一个是 Batch，它们的数据格式都是一样的，只是前者是异步的，后者是同步的，数据被刷到磁盘的频繁度不一样。它持久化的策略也很简单，就是首先将用户提交的数据所在的对象 RowMutation 序列化成 byte 数组，然后把这个对象和 byte 数组传给 LogRecordAdder 对象，由 LogRecordAdder 对象调用 CommitLogSegment 的 write 方法去完成写操作。
 
-#### CommitLog文件数组结构
+
+![CommitLog格式变化](./images/memtable_write.png)
+
+CommitLog文件数组结构
 
 ![CommitLog文件数组结构](./images/commitlog_data_model.png)
 
