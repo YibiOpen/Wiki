@@ -120,10 +120,15 @@ Cassandra 的写的性能很好，好的原因就是因为 Cassandra 写到数�
 Memtable 的条件满足后，它会创建一个 SSTableWriter 对象，然后取出 Memtable 中所有的 <DecoratedKey, ColumnFamily> 集合，将 ColumnFamily 对象的序列化结构写到 DataOutputBuffer 中。接下去 SSTableWriter 根据 DecoratedKey 和 DataOutputBuffer 分别写到 Date、Index 和 Filter 三个文件中。
 
 SSTable 的 Data 文件结构
+
 ![SSTable的Data文件结构](./images/data_file_model.png)
+
 Index 文件结构
+
 ![Phoenix性能对比](./images/index_file_model.png)
+
 Filter 文件结构
+
 ![Phoenix性能对比](./images/filter_file_model.png)
 
 三个文件对应的数据格式可以用下图来清楚的表示：
